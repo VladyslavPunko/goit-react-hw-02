@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Description from "./Description/Description";
 import Options from "./Options/Options";
@@ -12,7 +12,15 @@ const initialFeedback = {
 };
 
 function App() {
-  const [count, setCount] = useState(initialFeedback);
+  const [count, setCount] = useState(() => {
+    const stringifyCount = localStorage.getItem("feedBack");
+    const parsedCount = JSON.parse(stringifyCount) ?? initialFeedback;
+    return parsedCount;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("feedBack", JSON.stringify(count));
+  }, [count]);
 
   const totalFeedback = count.good + count.neutral + count.bad;
 
