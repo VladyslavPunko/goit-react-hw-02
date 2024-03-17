@@ -33,7 +33,11 @@ function App() {
         resetFeedback={resetFeedback}
       />
 
-      {totalFeedback > 0 ? <Feedback count={count} /> : <Notification />}
+      {totalFeedback > 0 ? (
+        <Feedback count={count} totalFeedback={totalFeedback} />
+      ) : (
+        <Notification />
+      )}
     </>
   );
 }
