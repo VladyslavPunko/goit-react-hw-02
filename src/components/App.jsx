@@ -3,6 +3,7 @@ import "./App.css";
 import Description from "./Description/Description";
 import Options from "./Options/Options";
 import Feedback from "./Feedback/Feedback";
+import Notification from "./Notification/Notification";
 
 function App() {
   const [count, setCount] = useState({
@@ -11,16 +12,18 @@ function App() {
     bad: 0,
   });
 
+  const totalFeedback = count.good + count.neutral + count.bad;
+
   const updateFeedback = (feedbackType) => {
     setCount({ ...count, [feedbackType]: count[feedbackType] + 1 });
-    console.log("HI");
   };
 
   return (
     <>
       <Description />
       <Options updateFeedback={updateFeedback} />
-      <Feedback count={count} />
+
+      {totalFeedback > 0 ? <Feedback count={count} /> : <Notification />}
     </>
   );
 }
