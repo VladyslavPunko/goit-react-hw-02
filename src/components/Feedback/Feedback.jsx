@@ -1,12 +1,12 @@
 import css from "./Feedback.module.css";
 
-const Feedback = () => {
+const Feedback = ({ count }) => {
   return (
     <div>
       <ul className={css.list}>
-        <li>Good: 0</li>
-        <li>Neutral: 0</li>
-        <li>Bad: 0</li>
+        <li>Good:{count.good}</li>
+        <li>Neutral:{count.neutral}</li>
+        <li>Bad: {count.bad}</li>
       </ul>
     </div>
   );

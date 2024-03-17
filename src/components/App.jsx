@@ -11,11 +11,16 @@ function App() {
     bad: 0,
   });
 
+  const updateFeedback = (feedbackType) => {
+    setCount({ ...count, [feedbackType]: count[feedbackType] + 1 });
+    console.log("HI");
+  };
+
   return (
     <>
       <Description />
-      <Options />
-      <Feedback />
+      <Options updateFeedback={updateFeedback} />
+      <Feedback count={count} />
     </>
   );
 }
